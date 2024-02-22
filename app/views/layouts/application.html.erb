@@ -12,5 +12,7 @@
 
   <body>
     <%= yield %>
+
+    <%= turbo_frame_tag :master_turbo, target: "_top" %>
   </body>
 </html>
