@@ -4,6 +4,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    render(locals: {post_id: params[:id]})
+    render(locals: {post_id: params[:id], turbo_frame_request: turbo_frame_request?})
   end
 end

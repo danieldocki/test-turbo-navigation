@@ -1,1 +1,48 @@
-<%= tag.h1 "Post #{post_id}" %>
+<%= turbo_frame_tag :master_turbo do %>
+  <div
+    id="slider"
+    class="relative z-20"
+    data-controller="slider"
+    data-action="keydown.esc->slider#close"
+    data-slider-restore-url-value="/"
+    data-slider-turbo-frame-request-value="<%= turbo_frame_request %>"
+    data-turbo-temporary="true"
+    role="dialog"
+    aria-labelledby="slide-over-title"
+    aria-modal="true"
+    tabindex="0">
+
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" data-transition-enter="ease-in-out duration-500 sm:duration-700" data-transition-enter-start="opacity-0" data-transition-enter-end="opacity-100" data-transition-leave="ease-in-out duration-500 sm:duration-700" data-transition-leave-start="opacity-100" data-transition-leave-end="opacity-0" data-slider-target="transition"></div>
+
+    <div class="fixed inset-0 overflow-hidden">
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full">
+          <div class="pointer-events-auto relative w-screen max-w-md" data-transition-enter="transform transition ease-in-out duration-500 sm:duration-700" data-transition-enter-start="translate-x-full" data-transition-enter-end="translate-x-0" data-transition-leave="transform transition ease-in-out duration-500 sm:duration-700" data-transition-leave-start="translate-x-0" data-transition-leave-end="translate-x-full" data-slider-target="transition">
+            <div class="flex h-full flex-col overflow-y-scroll bg-white">
+              <div class="relative p-4 border-b">
+                <div class="flex items-center justify-between">
+                  <div class="relative z-10">
+                    <button type="button" class="flex items-center justify-center w-6 h-6 transition duration-150 ease-in-out bg-white rounded-full outline-transparent focus:outline-none focus:ring-4 focus:ring-opacity-50 text-dv-theme-600 focus:ring-dv-theme-300" data-action="click->slider#close">
+                      <span class="sr-only">Close</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 fill-current"><path d="M10.8284 12.0007L15.7782 16.9504L14.364 18.3646L8 12.0007L14.364 5.63672L15.7782 7.05093L10.8284 12.0007Z"></path></svg>
+                    </button>
+                  </div>
+
+                  <div class="absolute inset-0 z-0 flex items-center justify-center">
+                    <h1 id="slide-over-title" class="line-clamp-1 text-gray-900">
+                      <%= "Post #{post_id}" %>
+                    </h1>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex-1 overflow-y-auto">
+                Content
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
